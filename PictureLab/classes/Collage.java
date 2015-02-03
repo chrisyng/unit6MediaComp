@@ -1,40 +1,23 @@
-
-
-/**
- * Write a description of class Collage here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+import java.awt.Color;
 public class Collage
 {
-    /** description of instance variable x (add comment for each instance variable) */
-    private int x;
-
-    /**
-     * Default constructor for objects of class Collage
-     */
-    public Collage()
+    public static void main (String[] args)
     {
-        // initialise instance variables
-        x = 0;
+        Picture canvas = new Picture(850, 1680);
+        Pixel[][] pixels = canvas.getPixels2D();
+        Picture tux = new Picture("tux.png");
+        canvas.copy(tux, 0, 0); // 265X314 width x height
+        canvas.mirrorVerticalOverPoint(266); //reflects over edge of tux's picture       
+        Picture macBookPro = new Picture ("macbook.jpg"); // 550 x 550
+        macBookPro.setTransparency(255);
+        Picture windowsLogo = new Picture("windows.jpg");
+        canvas.copy(macBookPro, 0, 266+265); // copy in the macbook to the right of tux and his reflection
+        canvas.negate(0, 266, 314, 266+265); //negate tux's reflection        
+        canvas.mirrorHorizontalOverPoint(pixels.length/2);
+        canvas.mirrorVerticalOverPoint(pixels[0].length/2-1);
+        canvas.copyAndMixColors(windowsLogo, pixels.length/2-113, pixels[0].length/2-113);
+        canvas.sepia(0, 1410, 304, 1679); //sepia the top-right penguin
+        canvas.explore();
+        //canvas.write("MyCollage.jpg");
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *    that describes the operation of the method
-     *
-     * @pre        preconditions for the method
-     *            (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *            (what the method guarantees upon completion)
-     * @param    y    description of parameter y
-     * @return    description of the return value
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x+y;
-    }
-
 }

@@ -58,6 +58,7 @@ public class PictureTester
         swan.edgeDetection(10);
         swan.explore();
     }
+    /*
 
     public static void testMirrorArms()
     {
@@ -117,6 +118,7 @@ public class PictureTester
 
     /** Main method for testing.  Every class can have a main
      * method in Java */
+
     public static void main(String[] args)
     {
         // uncomment a call here to run a test
@@ -146,4 +148,5 @@ public class PictureTester
         //testClearBlueOverValue(200);
         //testGetAverageForColumn(0);
     }
+    
 }
