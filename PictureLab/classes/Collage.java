@@ -17,8 +17,9 @@ public class Collage
         canvas.mirrorVerticalOverPoint(pixels[0].length/2-1);
         canvas.copyAndMixColors(windowsLogo, pixels.length/2-113, pixels[0].length/2-113);
         canvas.sepia(0, 1410, 304, 1679); //sepia the top-right penguin
-        canvas.keepOnlyBlue(536, 1413, 846, 1674); // keepOnlyBlue the bottom-right penguin
-        canvas.explore();
-        //canvas.write("MyCollage.jpg");
+        canvas.keepOnlyBlue(536, 1413, 850, 1674); // keepOnlyBlue the bottom-right penguin
+        canvas.posterizeCustomBinSize(537, 0, 850, 264, 3); // posterize bottom-left penguin with 3 bins
+        canvas.explore();       
+        canvas.write("MyCollage.jpg");
     }
 }

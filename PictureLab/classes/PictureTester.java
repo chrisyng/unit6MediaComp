@@ -33,6 +33,14 @@ public class PictureTester
         beach.mirrorDiagonal();
         beach.explore();
     }
+    
+    public static void testPosterize()
+    {
+        Picture beach = new Picture("beach.jpg");
+        beach.explore();
+        beach.posterizeCustomBinSize(0, 0, 240, 240, 4);
+        beach.explore();
+    }
 
     /** Method to test mirrorTemple */
     public static void testMirrorTemple()

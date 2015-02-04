@@ -126,20 +126,35 @@ public class Picture extends SimplePicture
 
     }
 
-    public void posterize(int startRow, int startCol, int endRow, int endCol, int amountOfBins)
+    public void posterizeCustomBinSize(int startRow, int startCol, int endRow, int endCol, int amountOfBins)
     {
         Pixel[][] pixels = this.getPixels2D();
         int binSize = 255/amountOfBins;
-        for (int row = startRow; row<endRow; row++)
+        
+        for (int binNumber = 1; binNumber <= amountOfBins; binNumber++)
         {
-            for (int col = startCol; col < endCol; col++)
+            int lowerBinBound = binSize*(binNumber-1);
+            int higherBinBound = binSize*binNumber;
+            for (int row = startRow; row<endRow; row++)
             {
-                for (int binNumber = 1; binNumber<=amountOfBins; binNumber++)
-                {
-                    if (pixels[row][col].getRed()<binSize*binNumber)
+                for (int col = startCol; col < endCol; col++)
+                {                 
+
+                    if (pixels[row][col].getRed()<higherBinBound && pixels[row][col].getRed()>lowerBinBound)
                     {
-                        pixels[row][col].setRed((binSize * binNumber) + (binSize * (binNumber+1))/2);
+                        pixels[row][col].setRed((higherBinBound + lowerBinBound)/2);                    
                     }
+                    
+                    if (pixels[row][col].getGreen()<higherBinBound && pixels[row][col].getGreen() > lowerBinBound)
+                    {
+                        pixels[row][col].setGreen((higherBinBound + lowerBinBound)/2);                       
+                    }
+                    
+                    if (pixels[row][col].getBlue()<higherBinBound && pixels[row][col].getBlue() > lowerBinBound)
+                    {
+                        pixels[row][col].setBlue((higherBinBound + lowerBinBound)/2);                      
+                    }
+
                 }
             }
         }
